@@ -36,7 +36,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
 {
@@ -89,8 +89,9 @@
    GCC Licensing Program — Gulf flag palette (green #00732F, red #CE1126)
    on a left-rail section rhythm. Deliberately NOT the centred-header,
    shadowed-card system used by gulf-pgcp-landing: flat hairline panels,
-   Space Grotesk display at weight 500/600, headings pinned to a narrow
-   left rail with content in a wide right column.
+   Inter set BOLD (600/700) for display — gulf-pgcp runs Inter at 400, so
+   weight is what separates them typographically — headings pinned to a
+   narrow left rail with content in a wide right column.
    ====================================================================== */
 :root{
   --ink:#08170E;
@@ -108,7 +109,7 @@
   --line:#D6D1C4;
   --line-dark:rgba(255,255,255,.20);
 
-  --display:"Space Grotesk","Helvetica Neue",Arial,sans-serif;
+  --display:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
   --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
 
   --shell:1280px;
@@ -129,10 +130,10 @@ ul,ol{margin:0;padding:0;list-style:none}
 blockquote,figure{margin:0}
 a{color:inherit;text-decoration:none}
 h1,h2,h3,h4{font-family:var(--display);color:var(--ink);margin:0;line-height:1.08;text-wrap:balance}
-h1{font-size:clamp(2.6rem,1.3rem + 5.1vw,4.6rem);font-weight:600;letter-spacing:-.03em}
-h2{font-size:clamp(2rem,1.2rem + 2.9vw,3.25rem);font-weight:500;letter-spacing:-.028em}
-h3{font-size:1.3125rem;font-weight:500;letter-spacing:-.015em;line-height:1.25}
-h4{font-size:1.0625rem;font-weight:500;letter-spacing:-.01em;line-height:1.3}
+h1{font-size:clamp(2.6rem,1.3rem + 5.1vw,4.6rem);font-weight:700;letter-spacing:-.038em}
+h2{font-size:clamp(2rem,1.2rem + 2.9vw,3.25rem);font-weight:700;letter-spacing:-.034em}
+h3{font-size:1.3125rem;font-weight:600;letter-spacing:-.02em;line-height:1.25}
+h4{font-size:1.0625rem;font-weight:600;letter-spacing:-.015em;line-height:1.3}
 :focus-visible{outline:3px solid var(--green);outline-offset:3px;border-radius:4px}
 
 .shell{max-width:var(--shell);margin-inline:auto;padding-inline:28px}
@@ -210,7 +211,7 @@ h4{font-size:1.0625rem;font-weight:500;letter-spacing:-.01em;line-height:1.3}
 /* --- hero stat strip --------------------------------------------------- */
 .strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);margin-top:clamp(40px,5vw,64px)}
 .strip div{padding:1.6rem 1.4rem 0 0}
-.strip dt{font-family:var(--display);font-size:1.5rem;font-weight:500;color:var(--ink);letter-spacing:-.02em}
+.strip dt{font-family:var(--display);font-size:1.5rem;font-weight:700;color:var(--ink);letter-spacing:-.028em}
 .strip dd{margin:.35rem 0 0;font-size:.875rem;color:var(--muted);line-height:1.45}
 @media (max-width:760px){.strip{grid-template-columns:repeat(2,1fr);gap:0}}
 
@@ -231,14 +232,14 @@ h4{font-size:1.0625rem;font-weight:500;letter-spacing:-.01em;line-height:1.3}
 @media (max-width:1000px){.auth-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.auth-grid{grid-template-columns:1fr}}
 .auth{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:1.5rem 1.4rem;display:flex;flex-direction:column;gap:.5rem}
-.auth .abbr{font-family:var(--display);font-size:1.625rem;font-weight:600;color:var(--green);letter-spacing:-.02em;line-height:1}
+.auth .abbr{font-family:var(--display);font-size:1.625rem;font-weight:700;color:var(--green);letter-spacing:-.03em;line-height:1}
 .auth .full{font-size:.9375rem;color:var(--body);line-height:1.4}
 .auth .place{margin-top:auto;padding-top:.9rem;border-top:1px solid var(--line);font-size:.8125rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
 
 /* --- journey: outlined numerals in bordered rows, no connector rule --- */
 .journey{border-top:1px solid var(--line)}
 .jrow{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,3vw,44px);align-items:baseline;padding:1.65rem 0;border-bottom:1px solid var(--line)}
-.jnum{font-family:var(--display);font-size:clamp(2rem,3.4vw,3rem);font-weight:600;line-height:.9;
+.jnum{font-family:var(--display);font-size:clamp(2rem,3.4vw,3rem);font-weight:700;line-height:.9;
       color:transparent;-webkit-text-stroke:1.5px var(--green);letter-spacing:-.03em;min-width:2.4ch}
 @supports not ((-webkit-text-stroke:1px red)){.jnum{color:var(--green)}}
 .jbody{display:grid;grid-template-columns:minmax(0,.42fr) minmax(0,.58fr);gap:clamp(12px,2.5vw,36px);align-items:baseline}
@@ -294,7 +295,7 @@ h4{font-size:1.0625rem;font-weight:500;letter-spacing:-.01em;line-height:1.3}
 .quote{break-inside:avoid;background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:1.6rem 1.5rem;margin-bottom:16px}
 .quote p{font-size:1rem;line-height:1.55;color:var(--ink)}
 .quote .who{margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--line)}
-.quote .who strong{display:block;font-family:var(--display);font-weight:500;font-size:1rem;color:var(--ink)}
+.quote .who strong{display:block;font-family:var(--display);font-weight:600;font-size:1rem;color:var(--ink)}
 .quote .who span{font-size:.8125rem;color:var(--muted)}
 
 /* --- final CTA + footer ------------------------------------------------ */
