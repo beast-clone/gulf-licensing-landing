@@ -188,8 +188,8 @@ h4{font-size:1.0625rem;font-weight:600;letter-spacing:-.015em;line-height:1.3}
 .nav{position:sticky;top:0;z-index:50;background:rgba(245,243,238,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
 .nav .shell{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:14px}
 .brand{display:flex;align-items:center;gap:10px;min-height:44px}
-.brand img{height:52px;width:auto}
-@media (min-width:1024px){.brand img{height:60px}}
+.brand img{height:68px;width:auto}
+@media (min-width:1024px){.brand img{height:76px}}
 .nav-links{display:flex;align-items:center;gap:6px}
 .nav-links a{
   display:inline-flex;align-items:center;min-height:44px;padding:0 .85rem;
@@ -208,12 +208,26 @@ h4{font-size:1.0625rem;font-weight:600;letter-spacing:-.015em;line-height:1.3}
 .hero-figure::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(8,23,14,.10);border-radius:var(--r);pointer-events:none}
 @media (max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-figure{order:-1}.hero-figure img{aspect-ratio:4/3}}
 
-/* --- hero stat strip --------------------------------------------------- */
-.strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);margin-top:clamp(40px,5vw,64px)}
-.strip div{padding:1.6rem 1.4rem 0 0}
-.strip dt{font-family:var(--display);font-size:1.5rem;font-weight:700;color:var(--ink);letter-spacing:-.028em}
-.strip dd{margin:.35rem 0 0;font-size:.875rem;color:var(--muted);line-height:1.45}
-@media (max-width:760px){.strip{grid-template-columns:repeat(2,1fr);gap:0}}
+/* --- hero stat strip ---------------------------------------------------
+   Was a bare hairline with 1.5rem numbers and muted 0.875rem labels running
+   together with no bottom padding — it read as filler rather than a claim.
+   Now each figure is its own hairline card (same flat, shadowless language as
+   .panel), the number carries brand green at display size so it is the thing
+   the eye lands on, and the label is body colour at a readable size instead
+   of grey. A short green tab at the top edge ties the row to the accent
+   without adding weight. */
+.strip{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;
+       margin-top:clamp(40px,5vw,64px)}
+.strip div{position:relative;background:var(--white);border:1px solid var(--line);
+           border-radius:var(--r);padding:1.75rem 1.5rem 1.6rem}
+.strip div::before{content:"";position:absolute;left:1.5rem;top:-1px;width:36px;height:3px;
+                   background:var(--green);border-radius:0 0 3px 3px}
+.strip dt{font-family:var(--display);font-size:clamp(2.25rem,3.4vw,3rem);font-weight:700;
+          color:var(--green);letter-spacing:-.04em;line-height:1;
+          font-variant-numeric:tabular-nums lining-nums}
+.strip dd{margin:.7rem 0 0;font-size:.9375rem;color:var(--body);line-height:1.5;font-weight:500}
+@media (max-width:760px){.strip{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:460px){.strip{grid-template-columns:1fr}}
 
 /* --- flat hairline panels (no shadows anywhere on this page) ---------- */
 .panel{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:1.7rem 1.6rem}
@@ -236,12 +250,17 @@ h4{font-size:1.0625rem;font-weight:600;letter-spacing:-.015em;line-height:1.3}
 .auth .full{font-size:.9375rem;color:var(--body);line-height:1.4}
 .auth .place{margin-top:auto;padding-top:.9rem;border-top:1px solid var(--line);font-size:.8125rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
 
-/* --- journey: outlined numerals in bordered rows, no connector rule --- */
+/* --- journey: solid numerals in bordered rows, no connector rule --------
+   These were outlined (color:transparent + -webkit-text-stroke). At this size
+   the hollow glyphs read as a muddle — the 0 and 4 of "04" visually collided
+   because of the negative tracking. Solid green with tabular figures keeps the
+   editorial weight but is unambiguous, and every numeral occupies the same
+   width so the rows line up down the column. */
 .journey{border-top:1px solid var(--line)}
 .jrow{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,3vw,44px);align-items:baseline;padding:1.65rem 0;border-bottom:1px solid var(--line)}
-.jnum{font-family:var(--display);font-size:clamp(2rem,3.4vw,3rem);font-weight:700;line-height:.9;
-      color:transparent;-webkit-text-stroke:1.5px var(--green);letter-spacing:-.03em;min-width:2.4ch}
-@supports not ((-webkit-text-stroke:1px red)){.jnum{color:var(--green)}}
+.jnum{font-family:var(--display);font-size:clamp(1.75rem,3vw,2.5rem);font-weight:700;line-height:.95;
+      color:var(--green);letter-spacing:0;font-variant-numeric:tabular-nums lining-nums;
+      font-feature-settings:"tnum" 1,"lnum" 1;min-width:2.6ch}
 .jbody{display:grid;grid-template-columns:minmax(0,.42fr) minmax(0,.58fr);gap:clamp(12px,2.5vw,36px);align-items:baseline}
 @media (max-width:760px){.jbody{grid-template-columns:1fr;gap:.4rem}}
 
@@ -288,13 +307,29 @@ h4{font-size:1.0625rem;font-weight:600;letter-spacing:-.015em;line-height:1.3}
 .figure{border-radius:var(--r);overflow:hidden;border:1px solid var(--line)}
 .figure img{width:100%;height:auto}
 
-/* --- testimonials ------------------------------------------------------ */
-.quotes{columns:3;column-gap:16px}
-@media (max-width:1000px){.quotes{columns:2}}
-@media (max-width:680px){.quotes{columns:1}}
-.quote{break-inside:avoid;background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:1.6rem 1.5rem;margin-bottom:16px}
+/* --- testimonials: bento grid ------------------------------------------
+   This was `columns:3`, a masonry flow. CSS columns fill top-to-bottom and
+   wrap, so with five cards the column heights never matched and the block
+   read as ragged rather than composed.
+   A 6-column grid makes the five cards resolve into two aligned rows:
+   three cards spanning 2 each, then two spanning 3 each. Both rows total 6,
+   so every edge lines up. Cards stretch to a shared row height, and pushing
+   the attribution down with margin-top:auto puts every name on the same
+   baseline instead of floating under uneven quotes. */
+.quotes{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;align-items:stretch}
+.quote{grid-column:span 2;display:flex;flex-direction:column;
+       background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:1.6rem 1.5rem}
+.quote:nth-child(4),.quote:nth-child(5){grid-column:span 3}
+@media (max-width:1000px){
+  .quotes{grid-template-columns:repeat(2,1fr)}
+  .quote,.quote:nth-child(4),.quote:nth-child(5){grid-column:span 1}
+}
+@media (max-width:680px){
+  .quotes{grid-template-columns:1fr}
+  .quote,.quote:nth-child(4),.quote:nth-child(5){grid-column:span 1}
+}
 .quote p{font-size:1rem;line-height:1.55;color:var(--ink)}
-.quote .who{margin-top:1.1rem;padding-top:1.1rem;border-top:1px solid var(--line)}
+.quote .who{margin-top:auto;padding-top:1.1rem;border-top:1px solid var(--line)}
 .quote .who strong{display:block;font-family:var(--display);font-weight:600;font-size:1rem;color:var(--ink)}
 .quote .who span{font-size:.8125rem;color:var(--muted)}
 
@@ -309,7 +344,7 @@ h4{font-size:1.0625rem;font-weight:600;letter-spacing:-.015em;line-height:1.3}
 .foot-grid{display:grid;grid-template-columns:minmax(0,1.25fr) repeat(3,minmax(0,1fr));gap:clamp(28px,4vw,56px)}
 @media (max-width:900px){.foot-grid{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:560px){.foot-grid{grid-template-columns:1fr}}
-.foot-brand img{height:52px;width:auto;filter:brightness(0) invert(1)}
+.foot-brand img{height:68px;width:auto;filter:brightness(0) invert(1)}
 .foot-bottom{margin-top:clamp(36px,4vw,56px);padding-top:22px;border-top:1px solid rgba(255,255,255,.14);font-size:.8125rem;color:rgba(255,255,255,.58)}
 
 /* --- reveals. [data-reveal] carries no hidden resting state, so a blocked
@@ -339,7 +374,7 @@ h4{font-size:1.0625rem;font-weight:600;letter-spacing:-.015em;line-height:1.3}
 <header class="nav">
   <div class="shell">
     <a class="brand" href="#top" aria-label="GooCampus — home">
-      <img src="assets/logo.png" alt="GooCampus" width="1054" height="846" />
+      <img src="assets/logo.png" alt="GooCampus" width="1080" height="1080" />
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="#top">Home</a>
@@ -367,7 +402,7 @@ h4{font-size:1.0625rem;font-weight:600;letter-spacing:-.015em;line-height:1.3}
       </div>
       <figure class="hero-figure rise-in" style="animation-delay:.3s">
         <img src="assets/hero.jpg" width="1040" height="1300" fetchpriority="high" decoding="async"
-             alt="An Indian doctor in a white coat explaining test results at a hospital workstation" />
+             alt="Downtown Dubai at sunset, the Burj Khalifa rising beyond Sheikh Zayed Road" />
       </figure>
     </div>
 
@@ -393,7 +428,7 @@ h4{font-size:1.0625rem;font-weight:600;letter-spacing:-.015em;line-height:1.3}
         <p class="copy" style="margin-top:1.25rem">Every program is led by physicians who have already made this move. You work one-on-one with mentors practicing in the Gulf right now — through licensing, documentation, and the job search that follows.</p>
         <figure class="figure" style="margin-top:2.25rem">
           <img src="assets/review.jpg" width="1400" height="934" loading="lazy" decoding="async"
-               alt="Two Indian doctors reviewing documents together at a clinic desk" />
+               alt="Two physicians in white coats in a modern hospital lobby" />
         </figure>
       </div>
     </div>
@@ -647,7 +682,7 @@ h4{font-size:1.0625rem;font-weight:600;letter-spacing:-.015em;line-height:1.3}
   <div class="shell">
     <div class="foot-grid">
       <div class="foot-brand">
-        <img src="assets/logo.png" alt="GooCampus" width="1054" height="846" />
+        <img src="assets/logo.png" alt="GooCampus" width="1080" height="1080" />
         <p class="small" style="margin-top:1rem;max-width:34ch">Physician-led guidance for doctors building a medical career across the Gulf.</p>
       </div>
 
@@ -657,6 +692,7 @@ h4{font-size:1.0625rem;font-weight:600;letter-spacing:-.015em;line-height:1.3}
           <li><a href="#top">Home</a></li>
           <li><a href="#program">GCC Licensing Program</a></li>
           <li><a href="https://goocampus.fillout.com/goocampus-free-consultation" target="_blank" rel="noopener noreferrer">Schedule a Free Consultation</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
         </ul>
       </div>
 
