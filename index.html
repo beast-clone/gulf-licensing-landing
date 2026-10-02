@@ -206,7 +206,16 @@ h4{font-size:1.0625rem;font-weight:600;letter-spacing:-.015em;line-height:1.3}
 .hero-figure{position:relative;border-radius:var(--r);overflow:hidden;background:var(--sand)}
 .hero-figure img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5}
 .hero-figure::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 0 1px rgba(8,23,14,.10);border-radius:var(--r);pointer-events:none}
-@media (max-width:900px){.hero-grid{grid-template-columns:1fr}.hero-figure{order:-1}.hero-figure img{aspect-ratio:4/3}}
+/* Stacked above the copy on narrow screens, so the frame shortens — but 4/3
+   against a 4:5 file kept only about 60% of the height and cut the towers off
+   top and bottom. 1/1 is still short enough to sit above the headline while
+   keeping ~80%, and the focal point is pulled up so the skyline survives
+   rather than the road in the foreground. */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-figure{order:-1}
+  .hero-figure img{aspect-ratio:1/1;object-position:center 34%}
+}
 
 /* --- hero stat strip ---------------------------------------------------
    Was a bare hairline with 1.5rem numbers and muted 0.875rem labels running
